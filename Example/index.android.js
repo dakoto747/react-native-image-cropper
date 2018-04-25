@@ -28,7 +28,7 @@ class ExampleC extends Component {
     return (
       <ScrollView>
         <View>
-          <ImageCrop 
+          <ImageCrop
             ref={'cropper'}
             image={this.state.image}
             cropHeight={this.state.height}
@@ -68,6 +68,29 @@ class ExampleC extends Component {
         newImage: res,
       });
     })
+  }
+
+  getDimensions(){
+    this.refs._cropper.fetchDimensions()
+    .then(
+      dimensions => {
+        console.log(dimensions)
+        console.log("cropped dimensions");
+        console.log("height: "+dimensions.height);
+        console.log("width: "+coords.width);
+      }
+    );
+  }
+
+  getCoordinates(){
+    this.refs._cropper.fetchCoordinates()
+    .then(
+      coords => {
+        console.log("center coordinates");
+        console.log("centerX: "+coords.centerX);
+        console.log("centerY: "+coords.centerY);
+      }
+    );
   }
 }
 

@@ -16,8 +16,8 @@ yarn add react-native-image-cropper
 ```
 
 ## Requirements
-- `gl-react` You need to install gl-react. `npm i -S gl-react` 
-- `gl-react-native` You need to install gl-react-native and link the repo in RN. `npm i -S gl-react-native & rnpm link` 
+- `gl-react` You need to install gl-react. `npm i -S gl-react`
+- `gl-react-native` You need to install gl-react-native and link the repo in RN. `npm i -S gl-react-native & rnpm link`
 - `react-native` Android requires you to have RN 0.28 or higher!
 
 #### `{ImageCrop}` Props
@@ -26,7 +26,7 @@ yarn add react-native-image-cropper
 - `cropWidth` **(required)**: width of the image in cropped size.
 - `zoom`: range 0 - 100 setting zoom value. where 100 = full zoom. (default: 0)
 - `maxZoom`: max zoom value, should be bigger than minZoom value (default: 100)
-- `minZoom`: min zoom value, should be smaller than maxZoom value (default: 0) 
+- `minZoom`: min zoom value, should be smaller than maxZoom value (default: 0)
 - `panToMove`: Use pan to move image? (default: true)
 - `pinchToZoom` Use pinch to zoom image? (default: true)
 - `quality`: a value from 0 to 1 to describe the quality of the snapshot. 0 means 0% (most compressed) and 1 means 100% (best quality). (default: 1)
@@ -37,7 +37,8 @@ yarn add react-native-image-cropper
 
 #### `{ImageCrop}` Functions
 - `crop()`: returns a base64 encoded image.
-
+- `fetchDimensions`: returns an object containing the width and height of the copped image
+- `fetchCoordinates`: returns an object containing the x,y coordinates of the cropped image 
 
 ## Example
 ```js
@@ -49,7 +50,7 @@ import {ImageCrop} from 'react-native-image-cropper'
 render() {
   return (
   <View>
-    <ImageCrop 
+    <ImageCrop
       ref={'cropper'}
       image={this.state.image}
       cropHeight={this.state.height}
@@ -62,12 +63,34 @@ render() {
     />
     <Text onPress={this.capture()}>Capture()</Text>
   </View>
-    
+
   )
-} 
+}
 capture(){
   this.refs.cropper.crop()
   .then(base64 => console.log(base64))
+}
+getDimensions(){
+  this.refs._cropper.fetchDimensions()
+  .then(
+    dimensions => {
+      console.log(dimensions)
+      console.log("cropped dimensions");
+      console.log("height: "+dimensions.height);
+      console.log("width: "+coords.width);
+    }
+  );
+}
+
+getCoordinates(){
+  this.refs._cropper.fetchCoordinates()
+  .then(
+    coords => {
+      console.log("center coordinates");
+      console.log("centerX: "+coords.centerX);
+      console.log("centerY: "+coords.centerY);
+    }
+  );
 }
 ...
 
