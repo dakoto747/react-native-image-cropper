@@ -62,6 +62,20 @@ class ImageCrop extends Component {
       imageDimHeight: 0,
       imageDimWidth: 0,
       currentCapture: '',
+
+      //coordinates
+      /*
+      0,1 ---- 1,0
+       |        |
+       |        |
+      0,0 ---- 1,1
+
+      coord00: ,
+      coord01: ,
+      coord10: ,
+      coord11: ,
+      just use the center and the image dimensions instead
+      */
     }
   }
   componentWillMount(){
@@ -81,6 +95,14 @@ class ImageCrop extends Component {
       {height: this.state.imageHeight, width: this.state.imageWidth},
       this.state.zoom
     )
+    const ImageRatio = dimensions.width/dimensions.height
+    const ViewportRatio = viewport.width/viewport.height
+    //################### set cordinates here
+    this._centerCoordinates = {
+      centerX: this.state.centerX
+      centerY: this.state.centerY
+    }
+ // todo, add resizable viewport
 
     this.setState({
       imageDimHeight: this._dimensionAfterZoom.height,
@@ -126,6 +148,14 @@ class ImageCrop extends Component {
           )
           this.setState({centerX: movement.x})
           this.setState({centerY: movement.y})
+
+          //################### set cordinates here
+          this._centerCoordinates = {
+            centerX: this.state.centerX
+            centerY: this.state.centerY
+          }
+
+
         }else{
         //We are zooming the image
           if (this.zoomLastDistance == 0){
@@ -193,6 +223,12 @@ class ImageCrop extends Component {
   }
   crop(){
     return this.refs.cropit.captureFrame({quality: this.props.quality, type: this.props.type, format: this.props.format, filePath: this.props.filePath})
+  }
+  fetchDimensions(){
+    return this._dimensionAfterZoom;
+  }
+  fetchCoordinates(){
+    return this._centerCoordinates;
   }
 }
 ImageCrop.defaultProps = {
