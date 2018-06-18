@@ -99,7 +99,7 @@ class ImageCrop extends Component {
     const ViewportRatio = viewport.width/viewport.height
     //################### set cordinates here
     this._centerCoordinates = {
-      centerX: this.state.centerX
+      centerX: this.state.centerX,
       centerY: this.state.centerY
     }
  // todo, add resizable viewport
@@ -151,7 +151,7 @@ class ImageCrop extends Component {
 
           //################### set cordinates here
           this._centerCoordinates = {
-            centerX: this.state.centerX
+            centerX: this.state.centerX,
             centerY: this.state.centerY
           }
 
