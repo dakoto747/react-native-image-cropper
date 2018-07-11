@@ -96,7 +96,7 @@ class ImageCrop extends Component {
 
     this._dimensionAfterZoom = imageDimensionsAfterZoom(
       viewport,
-      dimensions,s
+      dimensions,
       this.state.zoom
     );
     const ImageRatio = dimensions.width/dimensions.height
