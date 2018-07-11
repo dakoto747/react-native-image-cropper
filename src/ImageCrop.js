@@ -85,7 +85,18 @@ class ImageCrop extends Component {
         imageHeight: height,
         imageWidth: width,
       })
-    })
+    }, ()=>{
+      if(this.props.originalImageWidth && this.props.originalImageWidth){
+          this.setState({
+              imageHeight: this.props.originalImageHeight,
+              imageWidth: this.props.originalImageWidth,
+          })
+      }else{
+          console.warn('Failed to get size for image: ' + this.props.image);
+      }
+
+    }
+    );
 
     //
     //get dimensions after crop
@@ -250,6 +261,8 @@ ImageCrop.defaultProps = {
 }
 ImageCrop.propTypes = {
   image: PropTypes.string.isRequired,
+  originalImageWidth: PropTypes.number,
+  originalImageHeight: PropTypes.number,
   cropWidth: PropTypes.number.isRequired,
   cropHeight: PropTypes.number.isRequired,
   zoomFactor: PropTypes.number,
