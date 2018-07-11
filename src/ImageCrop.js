@@ -90,11 +90,15 @@ class ImageCrop extends Component {
     //
     //get dimensions after crop
     //
+
+    let viewport = {height: this.props.cropHeight, width: this.props.cropWidth};
+    let dimensions = {height: this.state.imageHeight, width: this.state.imageWidth};
+
     this._dimensionAfterZoom = imageDimensionsAfterZoom(
-      {height: this.props.cropHeight, width: this.props.cropWidth},
-      {height: this.state.imageHeight, width: this.state.imageWidth},
+      viewport,
+      dimensions,s
       this.state.zoom
-    )
+    );
     const ImageRatio = dimensions.width/dimensions.height
     const ViewportRatio = viewport.width/viewport.height
     //################### set cordinates here
