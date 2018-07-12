@@ -90,7 +90,9 @@ class ImageCrop extends Component {
           this.setState({
               imageHeight: this.props.originalImageHeight,
               imageWidth: this.props.originalImageWidth,
-          })
+          });
+          alert("imageHeight: "+this.state.imageHeight);
+          alert("imageWidth: "+this.state.imageWidth);
       }else{
           console.warn('Failed to get size for image: ' + this.props.image);
       }
@@ -106,17 +108,17 @@ class ImageCrop extends Component {
     let dimensions = {height: this.state.imageHeight, width: this.state.imageWidth};
 
     this._dimensionAfterZoom = imageDimensionsAfterZoom(
-      viewport,
-      dimensions,
+        {height: this.props.cropHeight, width: this.props.cropWidth},
+        {height: this.state.imageHeight, width: this.state.imageWidth},
       this.state.zoom
     );
-    const ImageRatio = dimensions.width/dimensions.height
-    const ViewportRatio = viewport.width/viewport.height
+    /*
     //################### set cordinates here
     this._centerCoordinates = {
       centerX: this.state.centerX,
       centerY: this.state.centerY
     }
+    */
  // todo, add resizable viewport
 
     this.setState({
@@ -161,6 +163,8 @@ class ImageCrop extends Component {
             {x: this.offsetX, y: this.offsetY},
             this.state.zoom
           )
+
+            /*
           this.setState({centerX: movement.x})
           this.setState({centerY: movement.y})
 
@@ -170,6 +174,7 @@ class ImageCrop extends Component {
             centerY: this.state.centerY
           }
 
+*/
 
         }else{
         //We are zooming the image
