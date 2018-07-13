@@ -162,6 +162,7 @@ class ImageCrop extends Component {
           )
           this.setState({centerX: movement.x})
           this.setState({centerY: movement.y})
+            alert(movement.y+", "+movement.x);
 
           //################### set cordinates here
           this._centerCoordinates = {
