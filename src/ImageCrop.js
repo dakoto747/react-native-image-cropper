@@ -56,6 +56,8 @@ class ImageCrop extends Component {
       centerX: 0.5,
       centerY: 0.5,
 
+        center_X: 0.5,
+        center_Y: 0.5,
       //Image sizes
       imageHeight: 300,
       imageWidth: 300,
@@ -160,9 +162,8 @@ class ImageCrop extends Component {
             {x: this.offsetX, y: this.offsetY},
             this.state.zoom
           )
-          this.setState({centerX: movement.x})
-          this.setState({centerY: movement.y})
-            alert(movement.y+", "+movement.x);
+          this.setState({centerX: movement.x, center_X: movement.x});
+          this.setState({centerY: movement.y, center_Y: movement.y});
 
           //################### set cordinates here
           this._centerCoordinates = {
@@ -244,8 +245,8 @@ class ImageCrop extends Component {
   }
   fetchCoordinates(){
     return {
-        centerX: this.state.centerX,
-        centerY: this.state.centerY
+        centerX: this.state.center_X,
+        centerY: this.state.center_Y
     };
   }
 }
