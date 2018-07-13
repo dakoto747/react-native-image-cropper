@@ -242,7 +242,10 @@ class ImageCrop extends Component {
     return this._dimensionAfterZoom;
   }
   fetchCoordinates(){
-    return this._centerCoordinates;
+    return {
+        centerX: this.state.centerX,
+        centerY: this.state.centerY
+    };
   }
 }
 ImageCrop.defaultProps = {
