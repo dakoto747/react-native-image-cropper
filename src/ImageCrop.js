@@ -162,6 +162,10 @@ class ImageCrop extends Component {
             {x: this.offsetX, y: this.offsetY},
             this.state.zoom
           )
+
+          if(this.props.setCoordinates){
+            this.props.setCoordinates(movement.x, movement.y);
+          }
           this.setState({centerX: movement.x, center_X: movement.x});
           this.setState({centerY: movement.y, center_Y: movement.y});
 
