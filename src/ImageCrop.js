@@ -199,6 +199,10 @@ class ImageCrop extends Component {
             this.setState({
               zoom: zoom,
             })
+
+            if(this.props.setZoom){
+                this.props.setZoom(zoom);
+            }
             //Set last distance..
             this.zoomLastDistance=this.zoomCurrentDistance
           }
@@ -273,6 +277,7 @@ ImageCrop.propTypes = {
   originalImageHeight: PropTypes.number,
   cropWidth: PropTypes.number.isRequired,
   cropHeight: PropTypes.number.isRequired,
+  setCoordinates:  PropTypes.func,
   zoomFactor: PropTypes.number,
   maxZoom: PropTypes.number,
   minZoom: PropTypes.number,
